@@ -1,0 +1,29 @@
+# Core
+fastapi
+uvicorn
+python-multipart
+
+# Whisper STT
+openai-whisper
+
+# GPT + Claude APIs
+openai
+anthropic
+python-dotenv
+
+# TTS
+gTTS
+
+# Optional: Emotion Detection
+transformers
+torch
+scipy
+
+# Optional: Better TTS (Later)
+# TTS  # for coqui.ai
+
+# 
+elevenlabs
+
+# Other
+uuid
