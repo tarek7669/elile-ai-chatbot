@@ -13,17 +13,22 @@ python-dotenv
 
 # TTS
 gTTS
+TTS==0.22.0
 
 # Optional: Emotion Detection
 transformers
-torch
+torch==2.1.2
+torchaudio==2.1.2
 scipy
-
-# Optional: Better TTS (Later)
-# TTS  # for coqui.ai
 
 # 
 elevenlabs
 
+# frontend
+streamlit
+sounddevice
+
+
 # Other
 uuid
+numpy
