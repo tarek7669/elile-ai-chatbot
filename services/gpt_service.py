@@ -28,13 +28,14 @@ class GPTService:
             # Generate response with GPT-4
             gpt_response = self._generate_gpt_response(user_text, emotion_data, is_crisis)
             
-            if gpt_response:
-                # Validate with Claude
-                validated_response = self._validate_with_claude(gpt_response, user_text, is_crisis)
-                return validated_response or gpt_response
+            return gpt_response
+            # if gpt_response:
+            #     # Validate with Claude
+            #     validated_response = self._validate_with_claude(gpt_response, user_text, is_crisis)
+            #     return validated_response or gpt_response
             
             # Fallback to Claude if GPT fails
-            return self._generate_claude_response(user_text, emotion_data, is_crisis)
+            # return self._generate_claude_response(user_text, emotion_data, is_crisis)
             
         except Exception as e:
             logger.error(f"Error generating therapeutic response: {str(e)}")

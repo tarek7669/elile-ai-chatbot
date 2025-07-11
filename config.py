@@ -11,7 +11,7 @@ class ModelConfig:
     # OpenAI Configuration
     openai_api_key: str = os.getenv("OPENAI_API_KEY", "")
     whisper_model: str = "whisper-1"  # OpenAI Whisper API
-    gpt_model: str = "gpt-4-mini"
+    gpt_model: str = "gpt-4o-mini"
     
     # Anthropic Configuration
     anthropic_api_key: str = os.getenv("ANTHROPIC_API_KEY", "")

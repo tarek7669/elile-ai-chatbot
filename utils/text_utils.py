@@ -2,7 +2,7 @@
 
 import re
 import unicodedata
-from typing import str
+# from typing import str
 
 def normalize_arabic_text(text: str) -> str:
     """Normalize Arabic text for processing."""
