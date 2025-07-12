@@ -52,15 +52,22 @@ class TTSService:
                 return None
             
             # Synthesize speech
-            self.tts.tts_to_file(
+            # self.tts.tts_to_file(
+            #     text=text,
+            #     speaker_wav=self.voice_file,
+            #     language="ar",
+            #     file_path=output_path
+            # )
+
+            wav_output = self.tts.tts(
                 text=text,
                 speaker_wav=self.voice_file,
                 language="ar",
-                file_path=output_path
             )
             
             logger.info(f"Speech synthesized successfully: {output_path}")
-            return output_path
+            # return output_path
+            return wav_output
             
         except Exception as e:
             logger.error(f"Error synthesizing speech: {str(e)}")

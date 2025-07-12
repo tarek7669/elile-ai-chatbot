@@ -1,5 +1,6 @@
 """Streamlit frontend for the Omani AI Therapist."""
 
+import numpy as np
 import streamlit as st
 import time
 import os
@@ -7,6 +8,7 @@ from services.session_manager import SessionManager
 from utils.audio_utils import AudioRecorder, AudioPlayer
 from utils.logging_config import setup_logging
 from config import CONFIG, validate_config
+import sounddevice as sd
 
 # Setup logging
 logger = setup_logging()
@@ -298,6 +300,14 @@ def main():
                         use_container_width=True):
                 
                 st.session_state.current_status = "listening"
+                # st.audio("D:/CVs/FEILD/companies/Elile.ai/Technical Assessment/elile-ai-chatbot/outputs/response_1752319458.wav", format="audio/wav")
+                # with open("outputs/response_1752319458.wav", "rb") as f:
+                #     audio_bytes = f.read()
+
+                # print("audio bytes:\n", audio_bytes[:100])  # Print first 100 bytes for debugging
+                # st.audio(audio_bytes, format="audio/wav")
+                # sd.play(np.array(audio_bytes), samplerate=16000)
+                # sd.wait()  # Wait until playback is done
                 st.rerun()
             
             # Processing area
@@ -329,15 +339,28 @@ def main():
                             display_response(result["response_text"], result["transcription"])
                             
                             # Play audio response
-                            if result["audio_file"] and os.path.exists(result["audio_file"]):
-                                st.audio(result["audio_file"], format="audio/wav")
+
+                            
+                            # print("Playing audio response from path: ", result["audio_file"])
+                            sd.play(np.array(result["audio_file"]), samplerate=16000)
+                            
+                            # Auto-play using HTML audio element
+                            st.markdown(f"""
+                            <audio autoplay>
+                                <source src="data:audio/wav;base64,{result['audio_file']}" type="audio/wav">
+                            </audio>
+                            """, unsafe_allow_html=True)
+
+                            # if result["audio_file"] and os.path.exists(result["audio_file"]):
+                            #     print("Playing audio response from path: ", result["audio_file"])
+                            #     st.audio(result["audio_file"], format="audio/wav")
                                 
-                                # Auto-play using HTML audio element
-                                st.markdown(f"""
-                                <audio autoplay>
-                                    <source src="data:audio/wav;base64,{result['audio_file']}" type="audio/wav">
-                                </audio>
-                                """, unsafe_allow_html=True)
+                            #     # Auto-play using HTML audio element
+                            #     st.markdown(f"""
+                            #     <audio autoplay>
+                            #         <source src="data:audio/wav;base64,{result['audio_file']}" type="audio/wav">
+                            #     </audio>
+                            #     """, unsafe_allow_html=True)
                             
                             # Update conversation history
                             st.session_state.conversation_history.append({
@@ -353,6 +376,9 @@ def main():
                             # Check if response was within time limit
                             if result["processing_time"] > CONFIG.max_response_time:
                                 st.warning(f"⚠️ الرد استغرق {result['processing_time']:.1f} ثانية (أكثر من الحد المطلوب)")
+
+                            
+                            sd.wait()  # Wait until playback is done
                             
                         else:
                             st.error(f"فشل في المعالجة - Processing failed: {result.get('error', 'Unknown error')}")
