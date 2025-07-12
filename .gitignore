@@ -209,3 +209,4 @@ tests/test_chat.py
 /outputs
 test_examples.py
 test_voice.py
+test_tts_load.py

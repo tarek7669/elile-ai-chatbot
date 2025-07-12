@@ -18,7 +18,7 @@ class GPTService:
     
     def generate_therapeutic_response(self, 
                                     user_text: str, 
-                                    emotion_data: Dict[str, float]) -> Optional[str]:
+                                    emotion_data: Optional[Dict[str, float]] = None) -> Optional[str]:
         """Generate therapeutic response using GPT-4 with Claude validation."""
         
         # Check for crisis keywords
@@ -26,7 +26,7 @@ class GPTService:
         
         try:
             # Generate response with GPT-4
-            gpt_response = self._generate_gpt_response(user_text, emotion_data, is_crisis)
+            gpt_response = self._generate_gpt_response(user_text, is_crisis, emotion_data)
             
             return gpt_response
             # if gpt_response:
@@ -43,8 +43,8 @@ class GPTService:
     
     def _generate_gpt_response(self, 
                              user_text: str, 
-                             emotion_data: Dict[str, float], 
-                             is_crisis: bool) -> Optional[str]:
+                             is_crisis: bool,
+                             emotion_data: Optional[Dict[str, float]] = None) -> Optional[str]:
         """Generate response using GPT-4."""
         
         # Determine primary emotion
@@ -52,7 +52,9 @@ class GPTService:
         emotion_confidence = emotion_data[primary_emotion]
         
         # Create therapeutic prompt
-        system_prompt = self._create_therapeutic_prompt(primary_emotion, emotion_confidence, is_crisis)
+        system_prompt = self._create_therapeutic_prompt(is_crisis, 
+                                                       primary_emotion, 
+                                                       emotion_confidence)
         
         try:
             response = openai.ChatCompletion.create(
@@ -151,10 +153,10 @@ class GPTService:
             logger.error(f"Error with Claude: {str(e)}")
             return None
     
-    def _create_therapeutic_prompt(self, 
-                                 primary_emotion: str, 
-                                 confidence: float, 
-                                 is_crisis: bool) -> str:
+    def _create_therapeutic_prompt(self,
+                                 is_crisis: bool, 
+                                 primary_emotion: str = None, 
+                                 confidence: float = None) -> str:
         """Create therapeutic system prompt."""
         
         base_prompt = """
@@ -181,7 +183,7 @@ class GPTService:
         - Encourage professional help
         - Mention emergency contacts (16262 - Oman Mental Health)
         """
-        
+        # prompt = base_prompt
         prompt = base_prompt + f"\n\nCurrent emotion: {primary_emotion} (confidence: {confidence:.2f})\n"
         prompt += emotion_guidance.get(primary_emotion, emotion_guidance["neutral"])
         

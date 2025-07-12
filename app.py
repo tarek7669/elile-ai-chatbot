@@ -335,14 +335,14 @@ def main():
                         
                         if result["success"]:
                             # Display results
-                            display_emotions(result["emotions"])
+                            # display_emotions(result["emotions"])
                             display_response(result["response_text"], result["transcription"])
                             
                             # Play audio response
 
                             
                             # print("Playing audio response from path: ", result["audio_file"])
-                            sd.play(np.array(result["audio_file"]), samplerate=16000)
+                            sd.play(np.array(result["audio_file"]), samplerate=CONFIG.sample_rate)
                             
                             # Auto-play using HTML audio element
                             st.markdown(f"""
@@ -366,7 +366,7 @@ def main():
                             st.session_state.conversation_history.append({
                                 "user": result["transcription"],
                                 "therapist": result["response_text"],
-                                "emotions": result["emotions"],
+                                # "emotions": result["emotions"],
                                 "timestamp": time.time()
                             })
                             
@@ -383,7 +383,7 @@ def main():
                         else:
                             st.error(f"فشل في المعالجة - Processing failed: {result.get('error', 'Unknown error')}")
                         
-                        st.session_state.current_status = "ready"
+                        st.session_state.current_status = "listening"
                         st.rerun()
                         
                     except Exception as e:

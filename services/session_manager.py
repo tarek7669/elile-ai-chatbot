@@ -37,6 +37,7 @@ class SessionManager:
         try:
             # Step 1: Speech to Text
             logger.info("Starting transcription...")
+            transcribe_start_time = time.time() # Add this
             transcription = self.stt_service.transcribe_audio(audio_bytes)
             
             if not transcription:
@@ -45,6 +46,8 @@ class SessionManager:
             
             result["transcription"] = transcription
             logger.info(f"Transcription completed: {transcription[:50]}...")
+            transcribe_end_time = time.time()
+            logger.info(f"Transcription took: {transcribe_end_time - transcribe_start_time:.2f} seconds.")
             
             # Step 2: Emotion Detection
             logger.info("Detecting emotions...")
@@ -57,6 +60,7 @@ class SessionManager:
             
             # Step 3: Generate Therapeutic Response
             logger.info("Generating therapeutic response...")
+            gpt_start_time = time.time()
             response_text = self.gpt_service.generate_therapeutic_response(
                 transcription, emotions
             )
@@ -67,9 +71,12 @@ class SessionManager:
             
             result["response_text"] = response_text
             logger.info(f"Response generated: {response_text[:50]}...")
+            gpt_end_time = time.time()
+            logger.info(f"GPT response generation took: {gpt_end_time - gpt_start_time:.2f} seconds.")
             
             # Step 4: Text to Speech
             logger.info("Synthesizing speech...")
+            synth_start_time = time.time()
             # audio_file = self.tts_service.synthesize_speech(response_text)
             wav_output = self.tts_service.synthesize_speech(response_text)
             
@@ -80,6 +87,8 @@ class SessionManager:
             # result["audio_file"] = audio_file
             result["audio_file"] = wav_output
             result["success"] = True
+            synth_end_time = time.time()
+            logger.info(f"Synthesizing took: {synth_end_time - synth_start_time:.2f} seconds.")
             
             # Calculate processing time
             processing_time = time.time() - start_time
