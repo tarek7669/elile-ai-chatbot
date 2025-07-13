@@ -1,22 +1,22 @@
-streamlit==1.28.1
+streamlit
 
 # AI/ML Core Stack (PyTorch ecosystem)
-torch==2.7.1
-torchvision==0.22.1
-torchaudio==2.7.1
-transformers==4.33.0
-tokenizers==0.13.3
-huggingface-hub==0.16.4
-safetensors==0.3.1
+torch
+torchvision
+torchaudio
+transformers
+tokenizers
+huggingface-hub
+safetensors
 
 # OpenAI & Anthropic APIs
-openai==0.28.1
-anthropic==0.57.1
+openai
+anthropic
 
 # Audio Processing Core
 librosa
-soundfile==0.12.1
-scipy==1.11.2
+soundfile
+scipy
 numpy
 sounddevice
 
@@ -29,20 +29,20 @@ pipwin
 TTS==0.22.0
 
 # Core Python Libraries
-requests==2.31.0
-urllib3==1.26.16
-certifi==2023.7.22
-charset-normalizer==3.2.0
-idna==3.4
+requests
+urllib3
+certifi
+charset-normalizer
+idna
 
 # Data Processing
 pandas
-pillow==10.0.0
+pillow
 
 # Utilities
-python-dotenv==1.0.0
-pydantic==1.10.12
-typing-extensions==4.7.1
+python-dotenv
+pydantic
+typing-extensions
 
 # Web Framework Dependencies
 tornado==6.3.2
