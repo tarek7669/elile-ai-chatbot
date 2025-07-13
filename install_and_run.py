@@ -57,7 +57,7 @@ def install_requirements():
         logger.info("Stage 3: Installing APIs and web framework...")
         api_packages = [
             "openai==0.28.1",
-            "anthropic==0.8.0",
+            "anthropic==0.57.1",
             "streamlit==1.28.1"
         ]
         subprocess.check_call([sys.executable, "-m", "pip", "install"] + api_packages)

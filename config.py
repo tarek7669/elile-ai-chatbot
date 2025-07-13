@@ -15,11 +15,12 @@ class ModelConfig:
     # OpenAI Configuration
     openai_api_key: str = os.getenv("OPENAI_API_KEY", "")
     whisper_model: str = "whisper-1"  # OpenAI Whisper API
-    gpt_model: str = "gpt-4o-mini"
+    gpt_model: str = "gpt-4o"
     
     # Anthropic Configuration
     anthropic_api_key: str = os.getenv("ANTHROPIC_API_KEY", "")
-    claude_model: str = "claude-3-opus-20240229"
+    # claude_model: str = "claude-3-opus-20240229"
+    claude_model: str = "claude-opus-4-20250514"
     
     # Audio Configuration
     sample_rate: int = 22050

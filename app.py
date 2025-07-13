@@ -17,8 +17,8 @@ logger = setup_logging()
 st.set_page_config(
     page_title="المعالج النفسي العماني - Omani AI Therapist",
     page_icon="🧠",
-    layout="wide",
-    initial_sidebar_state="expanded"
+    layout="centered",
+    initial_sidebar_state="collapsed"
 )
 
 # Custom CSS
@@ -361,7 +361,7 @@ def main():
                         return # Exit the function to prevent further processing
                     try:
                         # Process through pipeline
-                        result = st.session_state.session_manager.process_voice_input(st.session_state.audio_bytes)
+                        result = st.session_state.session_manager.process_voice_input(st.session_state.audio_bytes, st.session_state.conversation_history)
 
                         st.session_state.audio_bytes = None  # Clear audio bytes after processing
                         

@@ -20,7 +20,7 @@ class SessionManager:
         self.gpt_service = GPTService()
         self.tts_service = TTSService()
     
-    def process_voice_input(self, audio_bytes: bytes) -> Dict[str, Any]:
+    def process_voice_input(self, audio_bytes: bytes, session_history: list) -> Dict[str, Any]:
         """Process complete voice input through the pipeline."""
         
         start_time = time.time()
@@ -62,7 +62,7 @@ class SessionManager:
             logger.info("Generating therapeutic response...")
             gpt_start_time = time.time()
             response_text = self.gpt_service.generate_therapeutic_response(
-                transcription, emotions
+                transcription, session_history, emotions
             )
             
             if not response_text:

@@ -76,7 +76,7 @@ class TTSService:
             logger.error(f"Error loading TTS model: {str(e)}")
             self.tts = None
     
-    def synthesize_speech(self, text: str, output_path: Optional[str] = None) -> Optional[str]:
+    def synthesize_speech(self, text: str) -> Optional[str]:
         """Synthesize speech from text."""
         
         if not self.tts:
@@ -89,9 +89,9 @@ class TTSService:
         
         try:
             # Create output path if not provided
-            if not output_path:
-                output_path = f"outputs/response_{int(time.time())}.wav"
-                os.makedirs(os.path.dirname(output_path), exist_ok=True)
+            # if not output_path:
+            #     output_path = f"outputs/response_{int(time.time())}.wav"
+            #     os.makedirs(os.path.dirname(output_path), exist_ok=True)
             
             # Check if voice file exists
             if not os.path.exists(self.voice_file):
@@ -104,7 +104,7 @@ class TTSService:
                 language="ar",
             )
             
-            logger.info(f"Speech synthesized successfully: {output_path}")
+            # logger.info(f"Speech synthesized successfully: {output_path}")
             # return output_path
             return wav_output
             
