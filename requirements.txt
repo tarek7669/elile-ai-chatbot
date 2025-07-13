@@ -21,8 +21,8 @@ numpy
 sounddevice
 
 # Audio I/O
-# pyaudio==0.2.11
-PyAudio
+pyaudio
+# PyAudio
 pipwin
 
 # TTS (Coqui) - Compatible with above PyTorch
