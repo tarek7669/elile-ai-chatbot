@@ -36,35 +36,37 @@ def install_requirements():
         # Install in stages to avoid conflicts
         logger.info("Stage 1: Installing core ML dependencies...")
         core_ml_packages = [
-            "numpy==1.24.3",
-            "scipy==1.11.1", 
-            "torch==2.0.1",
-            "torchaudio==2.0.2"
+            "numpy",
+            "scipy==1.11.2", 
+            "torch==2.7.1+cu128",
+            "torchvision==0.22.1+cu128",
+            "torchaudio==2.7.1+cu128"
         ]
         subprocess.check_call([sys.executable, "-m", "pip", "install"] + core_ml_packages)
         
         logger.info("Stage 2: Installing ML frameworks...")
         ml_packages = [
-            "transformers==4.30.2",
-            "librosa==0.10.1",
+            "transformers==4.33.0",
+            "librosa",
             "soundfile==0.12.1",
-            "TTS==0.13.3"
+            "TTS==0.22.0",
+            "sounddevice"
         ]
         subprocess.check_call([sys.executable, "-m", "pip", "install"] + ml_packages)
         
         logger.info("Stage 3: Installing APIs and web framework...")
         api_packages = [
             "openai==0.28.1",
-            "anthropic==0.3.11",
+            "anthropic==0.8.0",
             "streamlit==1.28.1"
         ]
         subprocess.check_call([sys.executable, "-m", "pip", "install"] + api_packages)
         
         logger.info("Stage 4: Installing audio and remaining dependencies...")
         remaining_packages = [
-            "pyaudio==0.2.11",
+            "PyAudio",
             "python-dotenv==1.0.0",
-            "pandas==2.0.3",
+            "pandas",
             "pillow==10.0.0"
         ]
         subprocess.check_call([sys.executable, "-m", "pip", "install"] + remaining_packages)
@@ -149,7 +151,7 @@ def create_sample_voice_file():
     """Create a sample voice file if it doesn't exist."""
     logger = setup_logging()
     
-    voice_file_path = "data/voices/omani.wav"
+    voice_file_path = "data/voices/audio.wav"
     
     if not os.path.exists(voice_file_path):
         logger.warning(f"Voice file not found: {voice_file_path}")

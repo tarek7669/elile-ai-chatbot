@@ -23,36 +23,8 @@ class AudioRecorder:
         self.SILENCE_CHUNKS = int(self.sample_rate / self.chunk_size * 1.5) # 1.5 seconds of silence to stop
         self.MAX_RECORDING_DURATION_CHUNKS = int(self.sample_rate / self.chunk_size * 30) # Max 30 seconds to prevent infinite recording
                                                                                          # (adjust as per config.py)
-        
-    # def record_audio(self, duration: int = 5) -> bytes:
-    #     """Record audio from microphone."""
-    #     audio = pyaudio.PyAudio()
-        
-    #     try:
-    #         stream = audio.open(
-    #             format=self.audio_format,
-    #             channels=self.channels,
-    #             rate=self.sample_rate,
-    #             input=True,
-    #             frames_per_buffer=self.chunk_size
-    #         )
-            
-    #         frames = []
-    #         for _ in range(0, int(self.sample_rate / self.chunk_size * duration)):
-    #             data = stream.read(self.chunk_size)
-    #             frames.append(data)
-            
-    #         stream.stop_stream()
-    #         stream.close()
-            
-    #         # Convert to bytes
-    #         audio_data = b''.join(frames)
-    #         return self._frames_to_wav_bytes(audio_data)
-            
-    #     finally:
-    #         audio.terminate()
 
-    def record_audio(self, duration: int = 5) -> bytes: # 'duration' parameter will now be ignored for VAD
+    def record_audio(self) -> bytes: # 'duration' parameter will now be ignored for VAD
         """Record audio from microphone with Voice Activity Detection (VAD)."""
         audio = pyaudio.PyAudio()
         
@@ -77,7 +49,6 @@ class AudioRecorder:
                 np_data = np.frombuffer(data, dtype=np.int16)
                 
                 # Calculate RMS (Root Mean Square) energy of the chunk
-                # Avoid division by zero for completely silent chunks
                 mean_squared = np.mean(np_data**2) if np_data.size > 0 else 0
                 rms = np.sqrt(max(0.0, mean_squared))
 

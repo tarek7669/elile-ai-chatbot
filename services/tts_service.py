@@ -97,14 +97,6 @@ class TTSService:
             if not os.path.exists(self.voice_file):
                 logger.error(f"Voice file not found: {self.voice_file}")
                 return None
-            
-            # Synthesize speech
-            # self.tts.tts_to_file(
-            #     text=text,
-            #     speaker_wav=self.voice_file,
-            #     language="ar",
-            #     file_path=output_path
-            # )
 
             wav_output = self.tts.tts(
                 text=text,

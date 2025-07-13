@@ -77,12 +77,7 @@ class SessionManager:
             # Step 4: Text to Speech
             logger.info("Synthesizing speech...")
             synth_start_time = time.time()
-            # audio_file = self.tts_service.synthesize_speech(response_text)
             wav_output = self.tts_service.synthesize_speech(response_text)
-            
-            # if not audio_file:
-            #     result["error"] = "Failed to synthesize speech"
-            #     return result
             
             # result["audio_file"] = audio_file
             result["audio_file"] = wav_output

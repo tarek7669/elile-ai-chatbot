@@ -1,9 +1,9 @@
 streamlit==1.28.1
 
 # AI/ML Core Stack (PyTorch ecosystem)
-torch==2.1.2
-torchvision
-torchaudio==2.1.2
+torch==2.7.1+cu128
+torchvision==0.22.1+cu128
+torchaudio==2.7.1+cu128
 transformers==4.33.0
 tokenizers==0.13.3
 huggingface-hub==0.16.4

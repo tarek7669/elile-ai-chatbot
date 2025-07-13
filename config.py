@@ -36,7 +36,7 @@ class ModelConfig:
     
     # TTS Configuration
     tts_model_name: str = "tts_models/multilingual/multi-dataset/xtts_v2"
-    voice_file_path: str = "data/voices/omani.wav"
+    voice_file_path: str = "data/voices/audio.wav"
     
     # Therapeutic Configuration
     crisis_keywords: list = None
