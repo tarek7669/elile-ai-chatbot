@@ -90,8 +90,6 @@ OPENAI_API_KEY=sk-xxxxxxxxxxxxxxxxxxxx
 5. Run the app:
 
 ```bash
-Copy
-Edit
 streamlit run app.py
 ```
 It will launch automatically in your browser.
