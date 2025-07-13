@@ -54,80 +54,64 @@ Make sure you have the following installed on your system:
 ```bash
 git clone [Enter your GitHub repository URL here]
 cd [Your repository folder name]
+```
 2. Create and activate a virtual environment:
 
-bash
-Copy
-Edit
+```bash
 python -m venv venv
+```
 For Linux/macOS:
 
-bash
-Copy
-Edit
+```bash
 source venv/bin/activate
+```
 For Windows:
 
-bash
-Copy
-Edit
+```bash
 venv\Scripts\activate
+```
 3. Install dependencies:
 
-bash
-Copy
-Edit
+```bash
 pip install -r requirements.txt
+```
 4. Set up API Key:
 
 Create a file named .env in the root directory and add your key:
 
-env
-Copy
-Edit
-[YOUR_API_KEY_VARIABLE_NAME]=YOUR_API_KEY_HERE
+```bash
+YOUR_API_KEY_VARIABLE_NAME=YOUR_API_KEY_HERE
+```
 Example:
-
-env
-Copy
-Edit
+```bash
 OPENAI_API_KEY=sk-xxxxxxxxxxxxxxxxxxxx
 ✅ .gitignore already excludes .env to keep it secure.
-
+```
 5. Run the app:
 
-bash
+```bash
 Copy
 Edit
 streamlit run app.py
 ```
 It will launch automatically in your browser.
 
-📚 Technical Documentation
-Available in the docs/ folder:
+## 📚 Technical Documentation
 
-Architecture Documentation
+Available in the [`docs/`](docs/) folder:
 
-Model Evaluation Report
+- [Architecture Documentation](docs/architecture.md)
+- [Model Evaluation Report](docs/model_evaluation.md)
+- [Cultural Adaptation Guide](docs/cultural_adaptation.md)
+- [Safety Protocol Documentation](docs/safety_protocol.md)
+- [Performance Benchmarks](docs/performance_benchmarks.md)
+- [Test Conversation Logs](docs/test_conversations.md)
+- [Deployment Instructions](docs/deployment.md)
 
-Cultural Adaptation Guide
-
-Safety Protocol Documentation
-
-Performance Benchmarks
-
-Test Conversation Logs
-
-Deployment Instructions
-
-📺 Demo Video
+## 📺 Demo Video
 Watch the demo:
-📽️ [Link](https://www.loom.com/share/bf85adf6835d4831ae13025a08ba95d9?sid=4c1f8361-ef7f-4e67-9373-0eeb8e724dc2)
+[Link](https://www.loom.com/share/bf85adf6835d4831ae13025a08ba95d9?sid=4c1f8361-ef7f-4e67-9373-0eeb8e724dc2)
 
-🤝 Contributing
-Contributions welcome!
-Open an issue or submit a pull request with suggestions or improvements.
-
-📄 License
+## 📄 License
 [Insert your license here]
 (e.g., MIT License, Apache 2.0)
