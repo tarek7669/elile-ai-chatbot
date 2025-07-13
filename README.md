@@ -1,4 +1,4 @@
-# 🇴🇲 Omani AI Therapist
+# Omani AI Therapist
 
 ## 🌟 Project Overview
 
