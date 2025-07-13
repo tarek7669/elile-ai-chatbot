@@ -102,11 +102,11 @@ Available in the [`docs/`](docs/) folder:
 
 - [Architecture Documentation](docs/architecture.md)
 - [Model Evaluation Report](docs/model_evaluation.md)
-- [Cultural Adaptation Guide](docs/cultural_adaptation.md)
+- [Cultural Adaptation Guide](docs/cultural_adaptation_guide.md)
 - [Safety Protocol Documentation](docs/safety_protocol.md)
 - [Performance Benchmarks](docs/performance_benchmarks.md)
-- [Test Conversation Logs](docs/test_conversations.md)
-- [Deployment Instructions](docs/deployment.md)
+- [Test Conversation Logs](docs/test_conversations_logs.md)
+- [Deployment Instructions](docs/deployment_instruction.md)
 
 ## 📺 Demo Video
 Watch the demo:
